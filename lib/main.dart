@@ -1,3 +1,5 @@
+import 'package:compiler_test/Models/product.dart';
+import 'package:compiler_test/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Controllers/product_controller.dart';
@@ -26,7 +28,21 @@ class MyProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold (
+    final deviceSize=MediaQuery.of(context).size;
+    return Scaffold (
+      body: SizedBox(
+        width: deviceSize.width,
+        height: deviceSize.height,
+        child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          physics: const ClampingScrollPhysics(),
+          itemCount: productController.products.length,
+          itemBuilder: (context, index) {
+            return ProductItem(product: productController.products[index],);
+          },
+
+        ),
+      ),
 
 
     );
