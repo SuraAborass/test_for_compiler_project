@@ -2,6 +2,7 @@ import 'package:compiler_test/Models/product.dart';
 import 'package:compiler_test/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'Controllers/product_controller.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Browse Products',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -24,27 +25,41 @@ class MyApp extends StatelessWidget {
 }
 class MyProducts extends StatelessWidget {
    MyProducts({Key? key}) : super(key: key);
-  final ProductController productController = Get.put(ProductController());
+ final ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
-    final deviceSize=MediaQuery.of(context).size;
     return Scaffold (
+      appBar: AppBar(centerTitle: true,
+      title: const Text("My Products"),),
       body: SizedBox(
-        width: deviceSize.width,
-        height: deviceSize.height,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          physics: const ClampingScrollPhysics(),
-          itemCount: productController.products.length,
-          itemBuilder: (context, index) {
-            return ProductItem(product: productController.products[index],);
-          },
-
+        child: GetBuilder(
+          init: productController,
+          builder: (context) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                      width: Get.width/2,
+                      height: Get.height,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount:productController.products.length,
+                        itemBuilder: (context, index) {
+                          return ProductItem(product: productController.products[index],index:index,);
+                        },
+                      ),
+                    ),
+                SizedBox(
+                    width: Get.width/2,
+                    child:
+                    ProductItem(product:productController.product!, index: 0),
+                ),
+              ],
+            );
+          }
         ),
-      ),
-
-
+      )
     );
   }
 }
