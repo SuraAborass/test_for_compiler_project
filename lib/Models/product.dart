@@ -4,5 +4,7 @@ class Product {
    final String title;
    final String url;
 
-  Product( this.id, this.title, this.url);
+  Product( this.id,
+      this.title,
+      this.url,);
 }

@@ -14,7 +14,7 @@ class ProductItem extends StatelessWidget {
     return InkWell(
           onTap: (){productController.changProduct(index);},
           child: SizedBox(
-            height:200,
+            height:300,
             child: Column(
               children: [
                 Expanded(

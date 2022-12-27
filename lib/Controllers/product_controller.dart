@@ -4,18 +4,16 @@ import '../Models/product.dart';
 class ProductController extends GetxController {
    Product? product;
    List<Product>products = [
-     Product(1, 'Women','assets/images/Image 6.png'),
-     Product(2, 'Men','assets/images/Image 6.png'),
-     Product(3, 'Girls','assets/images/Image 6.png'),
-     Product(4, 'Women','assets/images/Image 6.png'),
-     Product(5, 'Men','assets/images/Image 6.png'),
-     Product(6, 'Girls','assets/images/Image 6.png'),
+     Product(1, 'Jeans','assets/images/ab.png'),
+     Product(2, "Women's Shirt",'assets/images/avv.png'),
+     Product(3, 'Leather Jacket','assets/images/dgbh.png'),
+     Product(4, 'skirt','assets/images/nhk.png'),
+     Product(5, 'Jacket','assets/images/su.png'),
+     Product(6, 'Blouse','assets/images/sv.png'),
    ];
   var loading = false.obs;
-
   @override
   void onInit() async {
-    //await   changProduct(product);
     product = products[0];
     update();
     super.onInit();
